@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Heroes.Models;
 
 namespace Heroes.Controllers;
 
