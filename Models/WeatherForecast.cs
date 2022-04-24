@@ -1,4 +1,4 @@
-namespace Heroes.Models;
+namespace Recipes.Models;
 
 public class WeatherForecast
 {
