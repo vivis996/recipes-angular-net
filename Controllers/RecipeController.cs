@@ -24,7 +24,7 @@ public class RecipeController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IEnumerable<Recipe>> Get()
+    public async Task<ActionResult<IEnumerable<Recipe>>> Get()
     {
         var recipes = Enumerable.Range(1, 50).Select(index => new Recipe
         {
@@ -46,6 +46,6 @@ public class RecipeController : ControllerBase
                 },
             }).ToArray(),
         });
-        return recipes.ToArray();
+        return Ok(recipes.ToArray());
     }
 }
