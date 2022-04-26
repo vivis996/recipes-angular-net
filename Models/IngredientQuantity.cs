@@ -2,6 +2,8 @@ namespace Recipes.Models;
 
 public class IngredientQuantity
 {
-  public Ingredient Ingredient { get; set; }
-  public Quantity Quantity { get; set; }
+  public int Id { get; set; }
+  public int RecipeId { get; set; }
+  public int IngredientId { get; set; }
+  public int QuantityId { get; set; }
 }
