@@ -1,11 +1,14 @@
 global using Recipes.Data;
 global using Microsoft.EntityFrameworkCore;
+using Recipes.Services.RecipeService;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IRecipeService, RecipeService>();
 
 builder.Services.AddDbContext<DataContext>(options =>
 {
