@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ServiceResponse } from '../interfaces/ServiceResponse';
 import { Recipe } from '../interfaces/Recipe';
 
 @Injectable({
@@ -18,11 +19,11 @@ export class RecipeService {
   constructor(private http: HttpClient) { }
 
    /** GET Recipes from the server */
-   getRecipes(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(this.recipesUrl)
+   getRecipes(): Observable<ServiceResponse<Recipe[]>> {
+    return this.http.get<ServiceResponse<Recipe[]>>(this.recipesUrl)
       .pipe(
         tap(_ => this.log('fetched recipes')),
-        catchError(this.handleError<Recipe[]>('getRecipes', []))
+        catchError(this.handleError<ServiceResponse<Recipe[]>>('getRecipes'))
       );
   }
 

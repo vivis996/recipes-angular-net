@@ -18,6 +18,6 @@ export class RecipesComponent implements OnInit {
 
   getRecipes(): void {
     this.recipeService.getRecipes()
-      .subscribe(recipes => this.recipes = recipes);
+      .subscribe(response => this.recipes = response.data);
   }
 }
