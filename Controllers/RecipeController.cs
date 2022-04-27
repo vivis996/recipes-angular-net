@@ -7,15 +7,6 @@ namespace Recipes.Controllers;
 [Route("api/[controller]")]
 public class RecipeController : ControllerBase
 {
-  private readonly string[] Recipes = new string[]
-  {
-    "Frijoles", "Lentejas", "Quesadillas", "Sandwich", "Huevos revueltos", "Entomatadas", "Chuletas", "Enchiladas",
-  };
-  private readonly string[] Ingredients = new string[]
-  {
-    "Lechuga", "Canela", "Pimienta", "Sal", "Tortilla de harina", "Tortilla maiz", "Tomate verde", "Huevo", "Chuleta", "Jamon", "Queso", "Espinaca",
-  };
-
   private readonly ILogger<RecipeController> _logger;
   private readonly DataContext _dataContext;
 
