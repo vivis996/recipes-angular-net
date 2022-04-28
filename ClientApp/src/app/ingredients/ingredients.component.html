@@ -1,0 +1,18 @@
+<h1 id="tableLabel">Ingredients</h1>
+
+<p *ngIf="!ingredients"><em>Loading...</em></p>
+
+<table class="table table-striped" aria-labelledby="tableLabel" *ngIf="ingredients">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Kind</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let ingredient of ingredients">
+            <td>{{ ingredient.name }}</td>
+            <td>{{ ingredient.kind }}</td>
+        </tr>
+    </tbody>
+</table>

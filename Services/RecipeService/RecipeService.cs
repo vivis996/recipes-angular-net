@@ -5,8 +5,7 @@ namespace Recipes.Services.RecipeService;
 public class RecipeService : BaseService, IRecipeService
 {
   public RecipeService(DataContext dataContext) : base(dataContext)
-  {
-  }
+  { }
 
   public async Task<ServiceResponse<List<Recipe>>> AddNewObject(Recipe newObject)
   {
@@ -30,13 +29,13 @@ public class RecipeService : BaseService, IRecipeService
     var serviceResponse = new ServiceResponse<List<Recipe>>();
     try
     {
-      var recipe = await this._dataContext.Recipes.FindAsync(id);
-      if (recipe == null)
+      var @object = await this._dataContext.Recipes.FindAsync(id);
+      if (@object == null)
       {
         throw new NullReferenceException("Recipe not found.");
       }
 
-      this._dataContext.Recipes.Remove(recipe);
+      this._dataContext.Recipes.Remove(@object);
       await this._dataContext.SaveChangesAsync();
       serviceResponse.Data = await this._dataContext.Recipes
                                 .Include(r => r.Ingredients).ToListAsync();
@@ -72,15 +71,15 @@ public class RecipeService : BaseService, IRecipeService
     var serviceResponse = new ServiceResponse<Recipe>();
     try
     {
-      var recipe = await this._dataContext.Recipes
+      var @object = await this._dataContext.Recipes
                       .Include(r => r.Ingredients)
                       .FirstOrDefaultAsync(r => r.Id == id);
-      if (recipe == null)
+      if (@object == null)
       {
         throw new NullReferenceException("Recipe not found.");
       }
       
-      serviceResponse.Data = recipe;
+      serviceResponse.Data = @object;
     }
     catch (System.Exception ex)
     {
@@ -96,20 +95,20 @@ public class RecipeService : BaseService, IRecipeService
     var serviceResponse = new ServiceResponse<Recipe>();
     try
     {
-      var recipe = await this._dataContext.Recipes.FindAsync(updateObject.Id);
-      if (recipe == null)
+      var @object = await this._dataContext.Recipes.FindAsync(updateObject.Id);
+      if (@object == null)
       {
         throw new NullReferenceException("Recipe not found.");
       }
       
-      recipe.Name = updateObject.Name;
-      recipe.Difficulty = updateObject.Difficulty;
-      recipe.PeopleCount = updateObject.PeopleCount;
-      recipe.Time = updateObject.Time;
+      @object.Name = updateObject.Name;
+      @object.Difficulty = updateObject.Difficulty;
+      @object.PeopleCount = updateObject.PeopleCount;
+      @object.Time = updateObject.Time;
 
       await this._dataContext.SaveChangesAsync();
       
-      serviceResponse.Data = recipe;
+      serviceResponse.Data = @object;
     }
     catch (System.Exception ex)
     {

@@ -1,6 +1,7 @@
 global using Recipes.Data;
 global using Microsoft.EntityFrameworkCore;
 using Recipes.Services.RecipeService;
+using Recipes.Services.IngredientService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IRecipeService, RecipeService>();
+builder.Services.AddScoped<IIngredientService, IngredientService>();
 
 builder.Services.AddDbContext<DataContext>(options =>
 {

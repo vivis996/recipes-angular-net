@@ -10,7 +10,7 @@ import { Recipe } from '../interfaces/Recipe';
 })
 export class RecipeService {
 
-  private recipesUrl = 'api/recipe';  // URL to web api
+  private endpointUrl = 'api/recipe';  // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -19,11 +19,11 @@ export class RecipeService {
   constructor(private http: HttpClient) { }
 
    /** GET Recipes from the server */
-   getRecipes(): Observable<ServiceResponse<Recipe[]>> {
-    return this.http.get<ServiceResponse<Recipe[]>>(this.recipesUrl)
+   getAll(): Observable<ServiceResponse<Recipe[]>> {
+    return this.http.get<ServiceResponse<Recipe[]>>(this.endpointUrl)
       .pipe(
         tap(_ => this.log('fetched recipes')),
-        catchError(this.handleError<ServiceResponse<Recipe[]>>('getRecipes'))
+        catchError(this.handleError<ServiceResponse<Recipe[]>>('getAll'))
       );
   }
 
