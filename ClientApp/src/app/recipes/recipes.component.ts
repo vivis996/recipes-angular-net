@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../interfaces/Recipe';
+import { ServiceResponse } from '../interfaces/ServiceResponse';
 import { RecipeService } from '../services/recipe.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { RecipeService } from '../services/recipe.service';
 })
 export class RecipesComponent implements OnInit {
 
-  recipes: Recipe[] = [];
+  recipes:  = [];
 
   constructor(private recipeService: RecipeService) { }
 
@@ -18,6 +19,6 @@ export class RecipesComponent implements OnInit {
 
   getRecipes(): void {
     this.recipeService.getAll()
-      .subscribe(response => this.recipes = response.data);
+      .subscribe((response: ServiceResponse<Recipe[]>) => this.recipes = response.data);
   }
 }
